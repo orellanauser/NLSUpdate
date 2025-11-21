@@ -1,0 +1,42 @@
+
+*.iml
+.gradle/
+.idea/
+.kotlin/
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild/
+.cxx/
+local.properties
+
+# Gradle build directories
+**/build/
+
+# Keystores and secrets
+*.jks
+*.keystore
+*.keystore.properties
+
+# Logs
+*.log
+
+# Archives and large binaries
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.7z
+
+# Project asset folder (do not commit firmware files)
+asset/
+
+# Do not ignore the Gradle wrapper binary
+!gradle/wrapper/gradle-wrapper.jar

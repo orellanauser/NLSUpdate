@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  AndroidManifest for NLSUpdate
+
+  This app has a single responsibility: if a firmware file exists at
+  /storage/emulated/0/Documents/OTA.zip, it broadcasts the vendor action
+  "nlscan.action.RUN_SYSTEM_UPDATE" with extra "file_path" set to that absolute path
+  and then exits immediately. If the file is not present, it simply exits.
+
+  Notes:
+  - READ/WRITE_EXTERNAL_STORAGE permissions are kept for compatibility on older
+    devices, although they are deprecated on newer Android versions.
+  - requestLegacyExternalStorage applies to Android 10 and is harmless elsewhere.
+  - <queries> declares visibility for the vendor broadcast action on Android 11+ so
+    the system can resolve related components if needed.
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Requested permissions -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECOVERY_SYSTEM" />
+
+    <!-- Package visibility declaration so we can resolve broadcast receivers
+         for the vendor action on Android 11+ -->
+    <queries>
+        <intent>
+            <action android:name="nlscan.action.RUN_SYSTEM_UPDATE" />
+        </intent>
+    </queries>
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.NLSUpdate"
+        android:requestLegacyExternalStorage="true">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.NLSUpdate">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

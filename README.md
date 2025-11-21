@@ -1,0 +1,56 @@
+NLSUpdate
+
+Purpose
+- Minimal Android app that triggers a Newland system update when a specific firmware file exists.
+
+Behavior
+- On launch, checks only: /storage/emulated/0/Documents/OTA.zip
+- If the file exists, sends broadcast:
+  - action: nlscan.action.RUN_SYSTEM_UPDATE
+  - extra: file_path = absolute path to the OTA.zip
+- Finishes immediately after attempting to send. If the file is not present, it exits without sending.
+
+Build requirements
+- JDK 11
+- Android SDK: compile/target API 36, minSdk 33
+- Use the included Gradle wrapper
+
+Build
+- Linux/macOS: ./gradlew assembleDebug
+- Windows: gradlew.bat assembleDebug
+
+Run/Test
+1) Obtain the correct firmware package from your device vendor (Newland) and copy it to the device as OTA.zip.
+2) Place the file at /storage/emulated/0/Documents/OTA.zip on the device.
+3) Install and launch the app.
+4) If the broadcast is handled by the system, the device should start the vendor update process.
+
+Notes
+- No firmware archives are included in this repository. Do not commit vendor firmware files or large archives to VCS.
+- .gitignore excludes build outputs, IDE files, local.properties, archives (zip/tar), and the asset directory.
+- Manifest includes legacy external storage flags/permissions for wider compatibility on older devices.
+- No UI is shown; the app performs its task and exits.
+
+License
+
+  MIT License
+
+Copyright (c) 2025 Luis E. Orellana
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including, without limitation,n the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OF OTHER DEALINGS IN THE
+SOFTWARE.
