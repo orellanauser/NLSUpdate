@@ -4,7 +4,7 @@ Purpose
 - Minimal Android app that triggers a Newland system update when a specific firmware file exists.
 
 Behavior
-- On launch, checks only: /storage/emulated/0/Documents/OTA.zip
+- On launch, checks for OTA.zip on /storage/emulated/0/Documents or /storage/emulated/0/Download
 - If the file exists, sends broadcast:
   - action: nlscan.action.RUN_SYSTEM_UPDATE
   - extra: file_path = absolute path to the OTA.zip
@@ -21,7 +21,7 @@ Build
 
 Run/Test
 1) Obtain the correct firmware package from your device vendor (Newland) and copy it to the device as OTA.zip.
-2) Place the file at /storage/emulated/0/Documents/OTA.zip on the device.
+2) Place the file at /Documents or /Download on the device.
 3) Install and launch the app.
 4) If the broadcast is handled by the system, the device should start the vendor update process.
 
