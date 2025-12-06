@@ -1,4 +1,4 @@
-package com.example.nlsupdate
+package com.newlandla.nlsupdate
 
 import org.junit.Test
 

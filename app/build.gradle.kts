@@ -4,20 +4,23 @@ plugins {
 }
 
 android {
-    namespace = "com.example.nlsupdate"
-    compileSdk {
-        version = release(36)
-    }
+    namespace = "com.newlandla.nlsupdate"
+    compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.example.nlsupdate"
+        applicationId = "com.newlandla.nlsupdate"
         minSdk = 33
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
 
+        // Note: archivesBaseName is a property of the project, not defaultConfig in KTS.
+        project.setProperty("archivesBaseName", "NLSUpdate-v${versionName}-${versionCode}")
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
+
+    // No Compose UI is used; keep features minimal
 
     buildTypes {
         release {
@@ -38,9 +41,12 @@ android {
     }
 }
 
+kotlin {
+    jvmToolchain(21)
+}
+
 dependencies {
     implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
